@@ -1,11 +1,9 @@
-"use client"
-
-import Link from "next/link"
 import type { ComponentPropsWithoutRef, ReactNode } from "react"
+import { Link } from "react-router-dom"
+import type { VariantProps } from "class-variance-authority"
 
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { VariantProps } from "class-variance-authority"
 
 type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>
 type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>
@@ -29,6 +27,15 @@ type CtaButtonAsLink = SharedProps & {
 
 export type CtaButtonProps = CtaButtonAsButton | CtaButtonAsLink
 
+function isExternalHref(href: string) {
+  return (
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  )
+}
+
 export function CtaButton({
   children,
   className,
@@ -43,7 +50,7 @@ export function CtaButton({
   )
 
   if ("href" in props && props.href) {
-    const { href, disabled, ...rest } = props
+    const { href, disabled } = props
 
     if (disabled) {
       return (
@@ -53,8 +60,16 @@ export function CtaButton({
       )
     }
 
+    if (isExternalHref(href)) {
+      return (
+        <a className={classes} href={href}>
+          {children}
+        </a>
+      )
+    }
+
     return (
-      <Link className={classes} href={href} {...rest}>
+      <Link className={classes} to={href}>
         {children}
       </Link>
     )

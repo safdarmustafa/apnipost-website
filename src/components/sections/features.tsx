@@ -1,5 +1,3 @@
-"use client"
-
 import { motion, useReducedMotion } from "framer-motion"
 
 import { FeatureCard } from "@/components/common/feature-card"

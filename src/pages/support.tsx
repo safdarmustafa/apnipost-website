@@ -1,5 +1,4 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import {
   Clock,
   HelpCircle,
@@ -15,10 +14,9 @@ import { FaqList } from "@/components/common/faq-list"
 import { Container } from "@/components/layout/container"
 import { APP_CONSTANTS } from "@/config/constants"
 import { supportFaqs } from "@/config/faqs"
-import { pageMetadata } from "@/config/metadata"
 import { siteConfig } from "@/config/site"
+import { usePageMeta } from "@/hooks/use-page-meta"
 
-export const metadata: Metadata = pageMetadata.support
 
 const helpTopics = [
   {
@@ -47,7 +45,13 @@ const helpTopics = [
   },
 ] as const
 
-export default function SupportPage() {
+export function SupportPage() {
+  usePageMeta({
+    title: "Support",
+    description: "Get help with ApniPost. Contact our support team for assistance.",
+    path: "/support",
+  })
+
   return (
     <div className="bg-background">
       <div className="border-b border-border bg-secondary/50">
@@ -187,7 +191,7 @@ export default function SupportPage() {
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <Link
               className="rounded-2xl border border-border bg-card p-5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              href="/privacy"
+              to="/privacy"
             >
               Privacy Policy
               <span className="mt-1 block text-sm font-normal text-muted-foreground">
@@ -196,7 +200,7 @@ export default function SupportPage() {
             </Link>
             <Link
               className="rounded-2xl border border-border bg-card p-5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              href="/terms"
+              to="/terms"
             >
               Terms & Conditions
               <span className="mt-1 block text-sm font-normal text-muted-foreground">
@@ -205,7 +209,7 @@ export default function SupportPage() {
             </Link>
             <Link
               className="rounded-2xl border border-border bg-card p-5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              href="/delete-account"
+              to="/delete-account"
             >
               Account Deletion
               <span className="mt-1 block text-sm font-normal text-muted-foreground">

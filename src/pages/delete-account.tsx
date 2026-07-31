@@ -1,5 +1,4 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import {
   CheckCircle2,
   Clock,
@@ -16,10 +15,9 @@ import {
   PolicyStep,
 } from "@/components/common/policy-ui"
 import { APP_CONSTANTS } from "@/config/constants"
-import { pageMetadata } from "@/config/metadata"
 import { siteConfig } from "@/config/site"
+import { usePageMeta } from "@/hooks/use-page-meta"
 
-export const metadata: Metadata = pageMetadata.deleteAccount
 
 const toc = [
   { id: "overview", label: "Overview" },
@@ -32,7 +30,13 @@ const toc = [
   { id: "contact", label: "Contact" },
 ]
 
-export default function DeleteAccountPage() {
+export function DeleteAccountPage() {
+  usePageMeta({
+    title: "Account Deletion",
+    description: "Request deletion of your ApniPost account and associated data.",
+    path: "/delete-account",
+  })
+
   return (
     <LegalPage
       badge="Google Play data deletion"
@@ -72,7 +76,7 @@ export default function DeleteAccountPage() {
           This page is provided so users and Google Play reviewers can clearly
           understand how account and data deletion works for{" "}
           {siteConfig.name}. For related details, see our{" "}
-          <Link href="/privacy">Privacy Policy</Link>.
+          <Link to="/privacy">Privacy Policy</Link>.
         </PolicyCallout>
       </section>
 
@@ -150,7 +154,7 @@ export default function DeleteAccountPage() {
         </ul>
         <p>
           Any retained data is handled according to our{" "}
-          <Link href="/privacy">Privacy Policy</Link> and is not kept longer
+          <Link to="/privacy">Privacy Policy</Link> and is not kept longer
           than necessary for those purposes.
         </p>
         <PolicyCallout className="mt-5" title="Shared content note">

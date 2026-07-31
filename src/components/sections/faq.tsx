@@ -1,5 +1,3 @@
-"use client"
-
 import { FaqList } from "@/components/common/faq-list"
 import { Section } from "@/components/layout/section"
 import { SectionHeader } from "@/components/layout/section-header"

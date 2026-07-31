@@ -1,5 +1,4 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import {
   Database,
   Mail,
@@ -14,10 +13,9 @@ import {
   PolicyCallout,
 } from "@/components/common/policy-ui"
 import { APP_CONSTANTS } from "@/config/constants"
-import { pageMetadata } from "@/config/metadata"
 import { siteConfig } from "@/config/site"
+import { usePageMeta } from "@/hooks/use-page-meta"
 
-export const metadata: Metadata = pageMetadata.privacy
 
 const toc = [
   { id: "introduction", label: "Introduction" },
@@ -34,7 +32,13 @@ const toc = [
   { id: "contact", label: "Contact us" },
 ]
 
-export default function PrivacyPage() {
+export function PrivacyPage() {
+  usePageMeta({
+    title: "Privacy Policy",
+    description: "Learn how ApniPost collects, uses, and protects your personal information.",
+    path: "/privacy",
+  })
+
   return (
     <LegalPage
       badge="Google Play compliant"
@@ -253,7 +257,7 @@ export default function PrivacyPage() {
           When you request account deletion, we remove your account and
           associated personal data from our active systems according to the
           process described on our{" "}
-          <Link href="/delete-account">Account Deletion</Link> page.
+          <Link to="/delete-account">Account Deletion</Link> page.
         </p>
       </section>
 
@@ -272,7 +276,7 @@ export default function PrivacyPage() {
             {APP_CONSTANTS.supportEmail}
           </a>
           . For deletion specifically, see{" "}
-          <Link href="/delete-account">Account Deletion</Link>.
+          <Link to="/delete-account">Account Deletion</Link>.
         </p>
       </section>
 

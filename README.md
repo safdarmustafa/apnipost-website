@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ApniPost Website
 
-## Getting Started
+Production marketing site for **ApniPost**, built with React + Vite.
 
-First, run the development server:
+## Stack
+
+- React 19
+- Vite
+- TypeScript
+- React Router DOM
+- Tailwind CSS v4
+- shadcn/ui
+- Framer Motion
+- Lucide React
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Type-check and build for production (`dist/`) |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Path | Page |
+| --- | --- |
+| `/` | Home |
+| `/privacy` | Privacy Policy |
+| `/terms` | Terms & Conditions |
+| `/support` | Support |
+| `/delete-account` | Account Deletion |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+  assets/
+  components/
+  config/
+  hooks/
+  layouts/
+  lib/
+  pages/
+  router/
+  styles/
+public/
+  screenshots/
+```
 
-## Deploy on Vercel
+## Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Place Android app screenshots in:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+public/screenshots/login.png
+public/screenshots/home.png
+public/screenshots/profile.png
+```
+
+## Environment
+
+Optional:
+
+```bash
+VITE_SITE_URL=https://apnipost.com
+```
+
+## Deploy on Cloudflare Pages
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | React (Vite) |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+
+SPA routing is handled by `public/_redirects`:
+
+```
+/*    /index.html   200
+```

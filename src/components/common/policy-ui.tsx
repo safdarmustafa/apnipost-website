@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react"
 import type { ReactNode } from "react"
+import { Link } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
 
@@ -64,6 +65,16 @@ type ContactCardProps = {
   label: string
 }
 
+function isExternalHref(href: string) {
+  return (
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("#")
+  )
+}
+
 export function ContactCard({
   icon: Icon,
   title,
@@ -71,6 +82,9 @@ export function ContactCard({
   href,
   label,
 }: ContactCardProps) {
+  const linkClassName =
+    "mt-4 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+
   return (
     <div className="not-prose rounded-2xl border border-border bg-card p-6 shadow-sm">
       <div className="mb-4 flex size-10 items-center justify-center rounded-xl border border-border bg-secondary text-primary">
@@ -80,12 +94,15 @@ export function ContactCard({
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
         {description}
       </p>
-      <a
-        className="mt-4 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        href={href}
-      >
-        {label}
-      </a>
+      {isExternalHref(href) ? (
+        <a className={linkClassName} href={href}>
+          {label}
+        </a>
+      ) : (
+        <Link className={linkClassName} to={href}>
+          {label}
+        </Link>
+      )}
     </div>
   )
 }

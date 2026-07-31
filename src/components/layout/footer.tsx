@@ -1,5 +1,5 @@
-import Link from "next/link"
 import { Mail, MessageCircle } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import { Container } from "@/components/layout/container"
 import { APP_CONSTANTS } from "@/config/constants"
@@ -14,7 +14,7 @@ export function Footer() {
           <div>
             <Link
               className="text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              href="/"
+              to="/"
             >
               {siteConfig.name}
             </Link>
@@ -54,7 +54,7 @@ export function Footer() {
                       <li key={item.href}>
                         <Link
                           className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                          href={item.href}
+                          to={item.href}
                         >
                           {item.title}
                         </Link>

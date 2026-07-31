@@ -1,5 +1,4 @@
-import Image from "next/image"
-import type { ReactNode } from "react"
+import { useState, type ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -21,15 +20,9 @@ type PhoneMockupProps = {
   size?: PhoneMockupSize
 }
 
-const sizeStyles: Record<PhoneMockupSize, { wrapper: string; sizes: string }> = {
-  default: {
-    wrapper: "w-[220px] sm:w-[250px] md:w-[280px]",
-    sizes: "(max-width: 640px) 220px, (max-width: 768px) 250px, 280px",
-  },
-  hero: {
-    wrapper: "w-[250px] sm:w-[290px] lg:w-[320px]",
-    sizes: "(max-width: 640px) 250px, (max-width: 1024px) 290px, 320px",
-  },
+const sizeStyles: Record<PhoneMockupSize, string> = {
+  default: "w-[220px] sm:w-[250px] md:w-[280px]",
+  hero: "w-[250px] sm:w-[290px] lg:w-[320px]",
 }
 
 export function PhoneMockup({
@@ -42,10 +35,11 @@ export function PhoneMockup({
   fit = "cover",
   size = "default",
 }: PhoneMockupProps) {
-  const { wrapper, sizes } = sizeStyles[size]
+  const [failed, setFailed] = useState(false)
+  const showImage = Boolean(src) && !failed
 
   return (
-    <div className={cn("relative mx-auto", wrapper, className)}>
+    <div className={cn("relative mx-auto", sizeStyles[size], className)}>
       <div
         className={cn(
           "relative aspect-[9/20.5] overflow-hidden rounded-[2rem] border border-border bg-card transition-shadow duration-300 ease-out",
@@ -56,7 +50,7 @@ export function PhoneMockup({
       >
         {/* Real screenshots include the device status bar, so the drawn notch
             is only used for the CSS placeholder. */}
-        {src ? null : (
+        {showImage ? null : (
           <div
             aria-hidden
             className="absolute inset-x-0 top-0 z-10 flex justify-center pt-3"
@@ -68,16 +62,19 @@ export function PhoneMockup({
         <div
           className={cn(
             "absolute inset-0",
-            src && fit === "contain" ? "bg-card" : "bg-secondary"
+            showImage && fit === "contain" ? "bg-card" : "bg-secondary"
           )}
         >
-          {src ? (
-            <Image
+          {showImage ? (
+            <img
               alt={alt}
-              className={fit === "contain" ? "object-contain" : "object-cover"}
-              fill
-              priority={priority}
-              sizes={sizes}
+              className={cn(
+                "absolute inset-0 h-full w-full",
+                fit === "contain" ? "object-contain" : "object-cover"
+              )}
+              decoding="async"
+              loading={priority ? "eager" : "lazy"}
+              onError={() => setFailed(true)}
               src={src}
             />
           ) : (

@@ -1,5 +1,4 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import {
   FileText,
   Mail,
@@ -13,10 +12,9 @@ import {
   PolicyCallout,
 } from "@/components/common/policy-ui"
 import { APP_CONSTANTS } from "@/config/constants"
-import { pageMetadata } from "@/config/metadata"
 import { siteConfig } from "@/config/site"
+import { usePageMeta } from "@/hooks/use-page-meta"
 
-export const metadata: Metadata = pageMetadata.terms
 
 const toc = [
   { id: "acceptance", label: "Acceptance" },
@@ -35,7 +33,13 @@ const toc = [
   { id: "contact", label: "Contact" },
 ]
 
-export default function TermsPage() {
+export function TermsPage() {
+  usePageMeta({
+    title: "Terms & Conditions",
+    description: "Read the terms and conditions for using ApniPost.",
+    path: "/terms",
+  })
+
   return (
     <LegalPage
       badge="Terms of use"
@@ -68,7 +72,7 @@ export default function TermsPage() {
         <p>
           By downloading, accessing, or using {siteConfig.name}, you agree to
           these Terms & Conditions and our{" "}
-          <Link href="/privacy">Privacy Policy</Link>. If you do not agree, do
+          <Link to="/privacy">Privacy Policy</Link>. If you do not agree, do
           not use the app or website.
         </p>
         <PolicyCallout className="mt-5" title="Important">
@@ -221,7 +225,7 @@ export default function TermsPage() {
           the service, or create risk for other users or our systems. You may
           stop using {siteConfig.name} at any time and request account deletion
           through our{" "}
-          <Link href="/delete-account">Account Deletion</Link> page.
+          <Link to="/delete-account">Account Deletion</Link> page.
         </p>
       </section>
 

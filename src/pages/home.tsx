@@ -1,26 +1,22 @@
-import type { Metadata } from "next"
-
 import { AboutSection } from "@/components/sections/about"
 import { FaqSection } from "@/components/sections/faq"
 import { FeaturesSection } from "@/components/sections/features"
 import { HeroSection } from "@/components/sections/hero"
 import { ScreenshotsSection } from "@/components/sections/screenshots"
 import { SupportCtaSection } from "@/components/sections/support-cta"
-import { pageMetadata } from "@/config/metadata"
-import { hasPublicAsset } from "@/lib/public-assets"
+import { siteConfig } from "@/config/site"
+import { usePageMeta } from "@/hooks/use-page-meta"
 
-export const metadata: Metadata = pageMetadata.home
+export function HomePage() {
+  usePageMeta({
+    title: `${siteConfig.name} — Share content your way`,
+    description: siteConfig.description,
+    path: "/",
+  })
 
-const HERO_SCREENSHOT = "/screenshots/home.png"
-
-export default function HomePage() {
   return (
     <>
-      <HeroSection
-        screenshotSrc={
-          hasPublicAsset(HERO_SCREENSHOT) ? HERO_SCREENSHOT : undefined
-        }
-      />
+      <HeroSection screenshotSrc="/screenshots/home.png" />
       <FeaturesSection />
       <AboutSection />
       <ScreenshotsSection />

@@ -1,7 +1,4 @@
-"use client"
-
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Menu } from "lucide-react"
 
@@ -21,7 +18,7 @@ import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -47,7 +44,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
             className="text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            href="/"
+            to="/"
           >
             {siteConfig.name}
           </Link>
@@ -59,8 +56,8 @@ export function Navbar() {
             {navigationConfig.main.map((item) => (
               <Link
                 className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                href={item.href}
                 key={item.href}
+                to={item.href}
               >
                 {item.title}
               </Link>
@@ -73,7 +70,7 @@ export function Navbar() {
             </CtaButton>
           </div>
 
-          <Sheet open={open} onOpenChange={setOpen}>
+          <Sheet onOpenChange={setOpen} open={open}>
             <SheetTrigger
               render={
                 <Button
@@ -100,9 +97,9 @@ export function Navbar() {
                 {navigationConfig.main.map((item) => (
                   <Link
                     className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    href={item.href}
                     key={item.href}
                     onClick={() => setOpen(false)}
+                    to={item.href}
                   >
                     {item.title}
                   </Link>

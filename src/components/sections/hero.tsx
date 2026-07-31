@@ -1,5 +1,3 @@
-"use client"
-
 import { motion, useReducedMotion } from "framer-motion"
 
 import { CtaButton } from "@/components/common/cta-button"

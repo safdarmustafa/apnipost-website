@@ -1,5 +1,3 @@
-"use client"
-
 import { FaqItem } from "@/components/common/faq-item"
 import { Accordion } from "@/components/ui/accordion"
 import type { FaqItem as FaqItemType } from "@/config/faqs"
