@@ -10,18 +10,21 @@ export function SupportCtaSection() {
         <SectionHeader
           align="center"
           className="mb-8"
-          description="Questions about the app, your account, or data requests? Our team is here to help."
+          description="Questions about the app, refunds, your account, or data requests? Our team is here to help."
           headingId="support-cta-heading"
           title="Need help?"
         />
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <CtaButton href={`mailto:${APP_CONSTANTS.supportEmail}`}>
             Email {APP_CONSTANTS.supportEmail}
           </CtaButton>
-          <p className="text-sm text-muted-foreground">
-            {APP_CONSTANTS.responseTime}
-          </p>
+          <CtaButton href={APP_CONSTANTS.playStoreUrl} variant="outline">
+            {APP_CONSTANTS.playStoreLabel}
+          </CtaButton>
         </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          {APP_CONSTANTS.responseTime}
+        </p>
       </div>
     </Section>
   )

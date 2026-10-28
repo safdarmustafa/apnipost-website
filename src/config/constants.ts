@@ -4,6 +4,7 @@ export type AppConstants = {
   copyrightYear: number
   responseTime: string
   playStoreLabel: string
+  playStoreUrl: string
 }
 
 export const APP_CONSTANTS: AppConstants = {
@@ -11,5 +12,7 @@ export const APP_CONSTANTS: AppConstants = {
   supportEmail: "admin@squarenovatech.com",
   copyrightYear: 2026,
   responseTime: "We typically respond within 1–2 business days.",
-  playStoreLabel: "Coming Soon",
+  playStoreLabel: "Get it on Google Play",
+  playStoreUrl:
+    "https://play.google.com/store/apps/details?id=com.apnipost.app",
 }

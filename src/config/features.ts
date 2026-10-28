@@ -1,11 +1,11 @@
 import type { LucideIcon } from "lucide-react"
 import {
+  Cake,
   Compass,
-  Layers,
   MessageCircle,
-  Search,
+  Music2,
   UserRound,
-  Zap,
+  Video,
 } from "lucide-react"
 
 export type Feature = {
@@ -18,37 +18,37 @@ export const features: Feature[] = [
   {
     title: "Explore Categories",
     description:
-      "Browse curated posts across categories built for local communities, students, and everyday sharing.",
+      "Browse Good Morning status, trending posts, festivals, and more content made for daily sharing.",
     icon: Compass,
   },
   {
     title: "Share to WhatsApp",
     description:
-      "Share any post to WhatsApp in one tap—fast, familiar, and ready for your conversations.",
+      "Share personalized posts to WhatsApp in one tap—ready for family groups and friends.",
     icon: MessageCircle,
   },
   {
-    title: "Personalized Templates",
+    title: "Birthday Wish Videos",
     description:
-      "Shared content is branded with your profile photo and name for a polished, personal touch.",
-    icon: Layers,
+      "Create birthday wish videos with your photo and name for a more personal greeting.",
+    icon: Cake,
   },
   {
-    title: "Fast Experience",
+    title: "Name Ringtones",
     description:
-      "A lightweight Android experience designed to feel instant from discovery to share.",
-    icon: Zap,
+      "Set special ringtones and audio styles, including name-based options for a unique call experience.",
+    icon: Music2,
   },
   {
-    title: "User Profiles",
+    title: "Your Photo & Name",
     description:
-      "Create your profile once and let every share carry your identity across WhatsApp.",
+      "Add your profile photo and name to templates so every share feels branded and personal.",
     icon: UserRound,
   },
   {
-    title: "Easy Discovery",
+    title: "Video Templates",
     description:
-      "Find relevant posts quickly with a clean layout built for Hindi, Urdu, and local audiences.",
-    icon: Search,
+      "Use ready-made video templates for wishes, devotion, and daily moments—then download or share.",
+    icon: Video,
   },
 ]

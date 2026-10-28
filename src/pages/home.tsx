@@ -16,7 +16,7 @@ export function HomePage() {
 
   return (
     <>
-      <HeroSection screenshotSrc="/screenshots/home.png" />
+      <HeroSection screenshotSrc="/screenshots/home.jpg" />
       <FeaturesSection />
       <AboutSection />
       <ScreenshotsSection />

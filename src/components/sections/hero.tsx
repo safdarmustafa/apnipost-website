@@ -1,21 +1,18 @@
 import { motion, useReducedMotion } from "framer-motion"
 
 import { CtaButton } from "@/components/common/cta-button"
-import { PhoneMockup } from "@/components/common/phone-mockup"
 import { Container } from "@/components/layout/container"
 import { APP_CONSTANTS } from "@/config/constants"
 import { siteConfig } from "@/config/site"
 
 type HeroSectionProps = {
-  /**
-   * Real Home screen export from `public/screenshots/home.png`. Passed in from
-   * the page so a missing file falls back to the placeholder device instead of
-   * rendering a broken image.
-   */
+  /** Marketing screenshot shown on the right (already includes device frame). */
   screenshotSrc?: string
 }
 
-export function HeroSection({ screenshotSrc }: HeroSectionProps) {
+export function HeroSection({
+  screenshotSrc = "/screenshots/home.jpg",
+}: HeroSectionProps) {
   const reduceMotion = useReducedMotion()
 
   return (
@@ -30,9 +27,18 @@ export function HeroSection({ screenshotSrc }: HeroSectionProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="mb-4 text-sm font-medium tracking-wide text-primary">
-            {siteConfig.name}
-          </p>
+          <div className="mb-4 flex items-center gap-3">
+            <img
+              alt=""
+              className="size-11 rounded-xl object-contain shadow-sm"
+              height={44}
+              src={siteConfig.logo}
+              width={44}
+            />
+            <p className="text-sm font-medium tracking-wide text-primary">
+              {siteConfig.name}
+            </p>
+          </div>
           <h1
             className="max-w-xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
             id="hero-heading"
@@ -40,12 +46,14 @@ export function HeroSection({ screenshotSrc }: HeroSectionProps) {
             Share posts that feel personal
           </h1>
           <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Explore content across categories and share instantly to WhatsApp.
-            Every share includes your profile photo and name on a polished
-            template—built for communities across India.
+            Create Good Morning status, birthday wish videos, and name
+            ringtones — then share instantly on WhatsApp with your photo and
+            name. Built for communities across India.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <CtaButton disabled>{APP_CONSTANTS.playStoreLabel}</CtaButton>
+            <CtaButton href={APP_CONSTANTS.playStoreUrl}>
+              {APP_CONSTANTS.playStoreLabel}
+            </CtaButton>
             <CtaButton href="/#features" variant="outline">
               Learn More
             </CtaButton>
@@ -67,7 +75,7 @@ export function HeroSection({ screenshotSrc }: HeroSectionProps) {
 
           <motion.div
             animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-            className="relative"
+            className="relative w-[240px] sm:w-[280px] lg:w-[320px]"
             transition={{
               duration: 6,
               ease: "easeInOut",
@@ -75,13 +83,14 @@ export function HeroSection({ screenshotSrc }: HeroSectionProps) {
               repeatType: "loop",
             }}
           >
-            <PhoneMockup
-              alt={`${siteConfig.name} home feed on Android`}
-              fit="contain"
-              label="Home screen preview"
-              priority
-              size="hero"
+            <img
+              alt={`${siteConfig.name} app preview — personalized status sharing`}
+              className="h-auto w-full rounded-3xl border border-border bg-card object-contain shadow-[0_36px_80px_-28px_rgba(15,23,42,0.45)]"
+              decoding="async"
+              height={1024}
+              loading="eager"
               src={screenshotSrc}
+              width={473}
             />
           </motion.div>
         </motion.div>

@@ -43,10 +43,19 @@ export function Navbar() {
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
-            className="text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             to="/"
           >
-            {siteConfig.name}
+            <img
+              alt=""
+              className="size-9 rounded-lg object-contain"
+              height={36}
+              src={siteConfig.logo}
+              width={36}
+            />
+            <span className="text-lg font-semibold tracking-tight text-foreground">
+              {siteConfig.name}
+            </span>
           </Link>
 
           <nav
@@ -65,7 +74,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <CtaButton aria-disabled disabled size="default">
+            <CtaButton href={APP_CONSTANTS.playStoreUrl} size="default">
               {APP_CONSTANTS.playStoreLabel}
             </CtaButton>
           </div>
@@ -88,7 +97,16 @@ export function Navbar() {
               side="right"
             >
               <SheetHeader className="border-b border-border px-5 py-4 text-left">
-                <SheetTitle>{siteConfig.name}</SheetTitle>
+                <SheetTitle className="flex items-center gap-2">
+                  <img
+                    alt=""
+                    className="size-8 rounded-lg object-contain"
+                    height={32}
+                    src={siteConfig.logo}
+                    width={32}
+                  />
+                  {siteConfig.name}
+                </SheetTitle>
               </SheetHeader>
               <nav
                 aria-label="Mobile"
@@ -106,7 +124,7 @@ export function Navbar() {
                 ))}
               </nav>
               <div className="border-t border-border px-5 py-4">
-                <CtaButton className="w-full" disabled>
+                <CtaButton className="w-full" href={APP_CONSTANTS.playStoreUrl}>
                   {APP_CONSTANTS.playStoreLabel}
                 </CtaButton>
               </div>

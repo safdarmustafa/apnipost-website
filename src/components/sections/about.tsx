@@ -11,26 +11,24 @@ export function AboutSection() {
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
         <SectionHeader
           as="h2"
-          description="ApniPost helps people across India discover shareable posts and send them on WhatsApp with a branded, personalized template."
+          description="ApniPost helps people across India create status posts, birthday videos, and ringtones — then share them on WhatsApp with a personal touch."
           eyebrow="About"
           headingId="about-heading"
           title="A simpler way to share what matters"
         />
         <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
           <p>
-            Whether you are a student, a community organizer, or someone who
-            simply loves sharing useful content, ApniPost makes discovery and
-            WhatsApp sharing feel effortless.
+            Whether you want a Good Morning status, a birthday wish video, or a
+            special ringtone, ApniPost makes it easy to personalize and share.
           </p>
           <p>
-            Explore posts across multiple categories, then share instantly.
-            Each shared template automatically includes your profile photo and
-            name—so every post carries your identity without extra design work.
+            Add your photo and name to templates, then share to WhatsApp in one
+            tap — so every post feels like it came from you.
           </p>
           <p>
-            Designed with Hindi and Urdu readers, local communities, and
-            mobile-first audiences in mind, ApniPost focuses on clarity, speed,
-            and a polished sharing experience.
+            Designed for Hindi readers, families, and local communities,
+            ApniPost focuses on clarity, speed, and a polished sharing
+            experience on Android.
           </p>
         </div>
       </div>

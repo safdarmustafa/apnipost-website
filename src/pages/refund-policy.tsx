@@ -3,8 +3,11 @@ import {
   BadgeIndianRupee,
   CheckCircle2,
   Clock,
+  ExternalLink,
   HelpCircle,
   Mail,
+  Receipt,
+  ShieldAlert,
 } from "lucide-react"
 
 import { CtaButton } from "@/components/common/cta-button"
@@ -20,42 +23,44 @@ import { usePageMeta } from "@/hooks/use-page-meta"
 
 const toc = [
   { id: "overview", label: "Overview" },
-  { id: "eligibility", label: "Eligibility" },
+  { id: "free-app", label: "Free app" },
+  { id: "when-refund", label: "When you can get a refund" },
   { id: "how-to-request", label: "How to request" },
-  { id: "processing", label: "Processing time" },
-  { id: "non-refundable", label: "Non-refundable cases" },
-  { id: "google-play", label: "Google Play purchases" },
+  { id: "order-id", label: "Find Order ID" },
+  { id: "google-play", label: "Refund via Google Play" },
+  { id: "processing", label: "What happens next" },
+  { id: "not-eligible", label: "When refunds are declined" },
   { id: "contact", label: "Contact us" },
 ]
 
 export function RefundPolicyPage() {
   usePageMeta({
     title: "Refund Policy",
-    description: `Learn how refunds work for ${siteConfig.name} and how to contact us for a refund request.`,
+    description: `Need a refund for ${siteConfig.name}? Learn eligibility, how to find your Google Play Order ID, and how to contact support.`,
     path: "/refund-policy",
   })
 
   return (
     <LegalPage
-      badge="Refunds & billing support"
-      description={`This Refund Policy explains when refunds may be available for ${siteConfig.name}, how to request one, and how to contact our support team.`}
+      badge="Customer billing help"
+      description={`If you were charged for an ${siteConfig.name} purchase on Google Play and need help, this page explains refund eligibility, the exact details we need, and how to contact us.`}
       highlights={[
         {
           icon: BadgeIndianRupee,
-          title: "Clear refund process",
+          title: "We review every request",
           description:
-            "Submit a refund request by email with your purchase details and reason.",
+            "Wrong charge, duplicate payment, or a feature that did not work — tell us and we will check.",
+        },
+        {
+          icon: Receipt,
+          title: "Order ID helps us move faster",
+          description:
+            "Your Google Play Order ID (GPA…) lets us verify the purchase quickly.",
         },
         {
           icon: Clock,
-          title: "Fast response",
+          title: "Reply in 1–2 business days",
           description: APP_CONSTANTS.responseTime,
-        },
-        {
-          icon: CheckCircle2,
-          title: "Fair review",
-          description:
-            "Eligible requests are reviewed carefully and confirmed by email.",
         },
       ]}
       title="Refund Policy"
@@ -64,152 +69,279 @@ export function RefundPolicyPage() {
       <section id="overview">
         <h2>1. Overview</h2>
         <p>
-          {siteConfig.name} is primarily offered as a free Android application.
-          If you make a purchase related to {siteConfig.name} in the future
-          (such as a paid feature, subscription, or in-app purchase), this
-          Refund Policy explains how refund requests are handled.
+          This Refund Policy applies to paid purchases related to{" "}
+          {siteConfig.name} (package ID: <strong>com.apnipost.app</strong>) made
+          through Google Play. It is written for real customers who need clear
+          steps — not legal jargon.
         </p>
-        <PolicyCallout className="mt-5" title="Need a refund?">
-          Contact us at{" "}
-          <a href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request`}>
+        <PolicyCallout className="mt-5" title="Fastest way to reach us">
+          Email{" "}
+          <a
+            href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request`}
+          >
             {APP_CONSTANTS.supportEmail}
           </a>{" "}
-          with the subject line <strong>Refund Request</strong>. Include your
-          purchase details so we can help you quickly.
+          with subject <strong>Refund Request</strong>. Include your Google Play
+          Order ID, purchase date, amount, and a short reason. We reply within
+          1–2 business days.
         </PolicyCallout>
       </section>
 
-      <section id="eligibility">
-        <h2>2. Refund eligibility</h2>
+      <section id="free-app">
+        <h2>2. ApniPost is free to download</h2>
         <p>
-          Refund requests are reviewed on a case-by-case basis. You may be
-          eligible for a refund if:
+          {siteConfig.name} is free on Google Play. You do not pay to install the
+          app. Refunds only apply if you completed a paid in-app purchase,
+          subscription, or other Google Play billing for {siteConfig.name}.
         </p>
+        <p>
+          Download the app here:{" "}
+          <a
+            href={APP_CONSTANTS.playStoreUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Google Play — ApniPost
+          </a>
+          .
+        </p>
+      </section>
+
+      <section id="when-refund">
+        <h2>3. When you can get a refund</h2>
+        <p>We generally approve refunds when:</p>
         <ul>
-          <li>You were charged incorrectly or more than once for the same purchase</li>
-          <li>A paid feature did not work as described due to a verified app issue</li>
-          <li>You requested a refund within a reasonable time after the purchase</li>
+          <li>You were charged twice for the same purchase</li>
+          <li>You were charged by mistake or for the wrong amount</li>
           <li>
-            The purchase was unauthorized and you report it promptly with
-            supporting details
+            A paid feature did not unlock / did not work after payment, and the
+            issue is on our side
+          </li>
+          <li>
+            Someone used your Google account without permission and you report
+            it quickly with proof
+          </li>
+          <li>
+            You request the refund soon after the purchase (ideally within a few
+            days)
           </li>
         </ul>
         <p>
-          Refund decisions may also depend on Google Play&apos;s billing and
-          refund rules for purchases made through the Play Store.
+          Final approval can also depend on Google Play&apos;s refund rules for
+          that order.
         </p>
       </section>
 
       <section id="how-to-request">
-        <h2>3. How to request a refund</h2>
-        <p>Follow these steps to submit a refund request:</p>
+        <h2>4. How to request a refund from us</h2>
+        <p>Follow these steps:</p>
 
         <div className="not-prose mt-6 space-y-5 rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6">
-          <PolicyStep step={1} title="Email our support team">
-            Send an email to{" "}
+          <PolicyStep step={1} title="Write to support">
+            Email{" "}
             <a
               className="font-medium text-primary underline-offset-4 hover:underline"
               href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request`}
             >
               {APP_CONSTANTS.supportEmail}
             </a>{" "}
-            with the subject line <strong>Refund Request</strong>.
+            with subject <strong>Refund Request</strong>.
           </PolicyStep>
-          <PolicyStep step={2} title="Include these details">
-            Please share:
+          <PolicyStep step={2} title="Share these details">
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Your name / display name in {siteConfig.name}</li>
-              <li>Google Play order ID or purchase receipt (if available)</li>
-              <li>Date of purchase and amount charged</li>
-              <li>A short explanation of why you are requesting a refund</li>
+              <li>Your name / display name in the app</li>
+              <li>
+                Google Play <strong>Order ID</strong> (starts with GPA…)
+              </li>
+              <li>Purchase date and amount (₹)</li>
+              <li>What you bought (if shown in Play Store)</li>
+              <li>Why you want a refund (1–3 lines is enough)</li>
+              <li>Screenshot of the Play receipt (optional, but helpful)</li>
             </ul>
           </PolicyStep>
-          <PolicyStep step={3} title="Wait for our confirmation">
-            We will review your request and reply by email.{" "}
-            {APP_CONSTANTS.responseTime}
+          <PolicyStep step={3} title="Wait for our reply">
+            We verify the order and email you the decision. If approved, Google
+            Play / your bank may take a few more days to show the credit.
           </PolicyStep>
         </div>
 
-        <div className="not-prose mt-6">
+        <div className="not-prose mt-6 flex flex-col gap-3 sm:flex-row">
           <CtaButton
-            href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request&body=Hello%20ApniPost%20Support%2C%0A%0AI%20would%20like%20to%20request%20a%20refund.%0A%0ADisplay%20name%3A%0AOrder%20ID%20%2F%20receipt%3A%0APurchase%20date%3A%0AAmount%3A%0AReason%3A%0A%0AThank%20you.`}
+            href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request&body=Hello%20ApniPost%20Support%2C%0A%0AI%20need%20help%20with%20a%20refund.%0A%0AName%20%2F%20display%20name%3A%0AGoogle%20Play%20Order%20ID%20(GPA...)%3A%0APurchase%20date%3A%0AAmount%20(INR)%3A%0AWhat%20I%20bought%3A%0AReason%3A%0A%0AThank%20you.`}
           >
-            Contact us for a refund
+            Email refund request
+          </CtaButton>
+          <CtaButton href={APP_CONSTANTS.playStoreUrl} variant="outline">
+            Open ApniPost on Play Store
           </CtaButton>
         </div>
       </section>
 
-      <section id="processing">
-        <h2>4. Processing time</h2>
+      <section id="order-id">
+        <h2>5. How to find your Google Play Order ID</h2>
+        <p>On your Android phone:</p>
+        <ol>
+          <li>Open the <strong>Play Store</strong> app</li>
+          <li>Tap your profile photo (top right)</li>
+          <li>Tap <strong>Payments & subscriptions</strong></li>
+          <li>Tap <strong>Budget & history</strong></li>
+          <li>Open the purchase for {siteConfig.name}</li>
+          <li>
+            Copy the <strong>Order ID</strong> (usually starts with{" "}
+            <strong>GPA</strong>)
+          </li>
+        </ol>
         <p>
-          After we receive a complete refund request, we typically respond
-          within <strong>1–2 business days</strong>. If a refund is approved,
-          the actual credit may take additional time to appear depending on
-          Google Play, your payment method, and your bank or card issuer.
+          You can also check the purchase email from Google Play for the same
+          Order ID.
         </p>
       </section>
 
-      <section id="non-refundable">
-        <h2>5. Non-refundable cases</h2>
-        <p>Refunds may be declined when:</p>
+      <section id="google-play">
+        <h2>6. You can also request a refund on Google Play</h2>
+        <p>
+          For many Play Store purchases, Google lets you request a refund
+          directly. That is often the fastest option for recent orders.
+        </p>
         <ul>
-          <li>The request is made a long time after the purchase without a valid reason</li>
-          <li>The issue was caused by device settings, unsupported devices, or user error</li>
-          <li>Required purchase details are missing and cannot be verified</li>
           <li>
-            The request conflicts with Google Play&apos;s refund policies for the
-            transaction
+            Open{" "}
+            <a
+              href="https://play.google.com/store/account/orderhistory"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Google Play order history
+            </a>
+          </li>
+          <li>Find the {siteConfig.name} purchase</li>
+          <li>Follow Google&apos;s refund / report a problem option</li>
+        </ul>
+        <PolicyCallout className="mt-5" title="Already contacted Google?">
+          If Google Play already refunded the order, you do not need to email
+          us again — unless the paid feature is still showing as active and you
+          need help turning it off.
+        </PolicyCallout>
+      </section>
+
+      <section id="processing">
+        <h2>7. What happens after you contact us</h2>
+        <ul>
+          <li>
+            <strong>We acknowledge</strong> your email (usually within 1–2
+            business days)
+          </li>
+          <li>
+            <strong>We verify</strong> the Order ID and purchase with available
+            billing records
+          </li>
+          <li>
+            <strong>We reply</strong> with approval, next steps, or questions if
+            details are missing
+          </li>
+          <li>
+            <strong>If approved</strong>, the refund is processed through Google
+            Play / your original payment method. Banks can take additional days
+            to show the amount
           </li>
         </ul>
       </section>
 
-      <section id="google-play">
-        <h2>6. Google Play purchases</h2>
+      <section id="not-eligible">
+        <h2>8. When refunds may be declined</h2>
+        <p>We may decline a refund when:</p>
+        <ul>
+          <li>We cannot verify the purchase (no Order ID / wrong app)</li>
+          <li>The request is made long after purchase without a valid reason</li>
+          <li>
+            The issue was caused by device settings, no internet, unsupported
+            Android version, or user error
+          </li>
+          <li>
+            Google Play policy does not allow a refund for that transaction
+          </li>
+          <li>The purchase was already refunded</li>
+        </ul>
         <p>
-          Purchases made through Google Play are also subject to Google&apos;s
-          payment and refund policies. In some cases, you may request a refund
-          directly through Google Play. You can also contact us first and we
-          will guide you.
-        </p>
-        <p>
-          For general product terms, see our{" "}
-          <Link to="/terms">Terms & Conditions</Link>. For privacy-related
-          questions, see our <Link to="/privacy">Privacy Policy</Link>.
+          Even if a refund is not possible, we still try to help fix the app
+          issue — email us the problem and your device model.
         </p>
       </section>
 
       <section id="contact">
-        <h2>7. Contact us for refunds</h2>
+        <h2>9. Contact us for refund help</h2>
         <p>
-          If you need help with a refund, billing question, or purchase issue,
-          contact Square Nova Tech support:
+          Square Nova Tech (developer of {siteConfig.name}) is here to help with
+          billing and refund questions.
         </p>
         <div className="not-prose mt-5 grid gap-4 sm:grid-cols-2">
           <ContactCard
-            description="Email us with your order details and we will review your refund request."
+            description="Best for refund requests. Include Order ID, amount, and reason."
             href={`mailto:${APP_CONSTANTS.supportEmail}?subject=Refund%20Request`}
             icon={Mail}
             label={APP_CONSTANTS.supportEmail}
-            title="Refund support"
+            title="Email support"
           />
           <ContactCard
-            description="Visit the Support page for response times and other help topics."
+            description="More help topics, response time, and account questions."
             href="/support"
             icon={HelpCircle}
-            label="Go to Support"
-            title="General support"
+            label="Open Support page"
+            title="Support center"
+          />
+          <ContactCard
+            description="Request a refund directly from Google for recent Play purchases."
+            href="https://play.google.com/store/account/orderhistory"
+            icon={ExternalLink}
+            label="Google Play order history"
+            title="Refund on Google Play"
+          />
+          <ContactCard
+            description="Read how we handle personal data related to your account."
+            href="/privacy"
+            icon={ShieldAlert}
+            label="Privacy Policy"
+            title="Privacy"
           />
         </div>
-        <p className="mt-6">
-          <strong>Developer:</strong> Square Nova Tech
-          <br />
-          <strong>App:</strong> {APP_CONSTANTS.appName}
-          <br />
-          <strong>Email:</strong>{" "}
-          <a href={`mailto:${APP_CONSTANTS.supportEmail}`}>
-            {APP_CONSTANTS.supportEmail}
-          </a>
-        </p>
+
+        <div className="not-prose mt-8 rounded-2xl border border-border bg-secondary/60 p-5 sm:p-6">
+          <div className="flex items-start gap-3">
+            <CheckCircle2
+              aria-hidden
+              className="mt-0.5 size-5 shrink-0 text-primary"
+            />
+            <div className="text-sm leading-relaxed text-muted-foreground">
+              <p className="font-semibold text-foreground">Developer details</p>
+              <p className="mt-2">
+                <strong>App:</strong> {APP_CONSTANTS.appName}
+                <br />
+                <strong>Package:</strong> com.apnipost.app
+                <br />
+                <strong>Developer:</strong> Square Nova Tech
+                <br />
+                <strong>Support email:</strong>{" "}
+                <a href={`mailto:${APP_CONSTANTS.supportEmail}`}>
+                  {APP_CONSTANTS.supportEmail}
+                </a>
+                <br />
+                <strong>Play Store:</strong>{" "}
+                <a
+                  href={APP_CONSTANTS.playStoreUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Open listing
+                </a>
+              </p>
+              <p className="mt-3">
+                Related pages: <Link to="/terms">Terms</Link>,{" "}
+                <Link to="/privacy">Privacy</Link>,{" "}
+                <Link to="/delete-account">Account Deletion</Link>.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </LegalPage>
   )

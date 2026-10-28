@@ -1,6 +1,7 @@
 import { Mail, MessageCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 
+import { CtaButton } from "@/components/common/cta-button"
 import { Container } from "@/components/layout/container"
 import { APP_CONSTANTS } from "@/config/constants"
 import { navigationConfig } from "@/config/navigation"
@@ -13,14 +14,23 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,2fr)] lg:gap-16">
           <div>
             <Link
-              className="text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               to="/"
             >
-              {siteConfig.name}
+              <img
+                alt=""
+                className="size-9 rounded-lg object-contain"
+                height={36}
+                src={siteConfig.logo}
+                width={36}
+              />
+              <span className="text-lg font-semibold tracking-tight text-foreground">
+                {siteConfig.name}
+              </span>
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A content-sharing platform for exploring posts across categories
-              and sharing them to WhatsApp with personalized templates.
+              Create personalized status posts, birthday videos, and ringtones
+              — then share them on WhatsApp with your photo and name.
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -29,17 +39,22 @@ export function Footer() {
                 WhatsApp sharing
               </span>
               <span className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-                Android · {APP_CONSTANTS.playStoreLabel}
+                Available on Google Play
               </span>
             </div>
 
-            <a
-              className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              href={`mailto:${APP_CONSTANTS.supportEmail}`}
-            >
-              <Mail aria-hidden className="size-4 text-primary" />
-              {APP_CONSTANTS.supportEmail}
-            </a>
+            <div className="mt-6 flex flex-col items-start gap-4">
+              <CtaButton href={APP_CONSTANTS.playStoreUrl} size="default">
+                {APP_CONSTANTS.playStoreLabel}
+              </CtaButton>
+              <a
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                href={`mailto:${APP_CONSTANTS.supportEmail}`}
+              >
+                <Mail aria-hidden className="size-4 text-primary" />
+                {APP_CONSTANTS.supportEmail}
+              </a>
+            </div>
           </div>
 
           <nav aria-label="Footer">
