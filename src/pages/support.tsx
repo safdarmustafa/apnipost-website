@@ -188,7 +188,7 @@ export function SupportPage() {
           >
             Helpful links
           </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <Link
               className="rounded-2xl border border-border bg-card p-5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               to="/privacy"
@@ -205,6 +205,15 @@ export function SupportPage() {
               Terms & Conditions
               <span className="mt-1 block text-sm font-normal text-muted-foreground">
                 Rules for using the app
+              </span>
+            </Link>
+            <Link
+              className="rounded-2xl border border-border bg-card p-5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              to="/refund-policy"
+            >
+              Refund Policy
+              <span className="mt-1 block text-sm font-normal text-muted-foreground">
+                Request a refund or billing help
               </span>
             </Link>
             <Link

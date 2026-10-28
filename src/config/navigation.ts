@@ -19,6 +19,7 @@ export type NavigationConfig = {
 const legalItems: NavItem[] = [
   { title: "Privacy Policy", href: "/privacy" },
   { title: "Terms & Conditions", href: "/terms" },
+  { title: "Refund Policy", href: "/refund-policy" },
   { title: "Account Deletion", href: "/delete-account" },
 ]
 

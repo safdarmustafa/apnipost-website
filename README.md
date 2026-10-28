@@ -40,6 +40,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/terms` | Terms & Conditions |
 | `/support` | Support |
 | `/delete-account` | Account Deletion |
+| `/refund-policy` | Refund Policy |
 
 ## Project structure
 

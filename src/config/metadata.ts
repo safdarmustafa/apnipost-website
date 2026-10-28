@@ -5,6 +5,7 @@ export type PageMetadataKey =
   | "privacy"
   | "terms"
   | "deleteAccount"
+  | "refundPolicy"
   | "support"
 
 export type PageMeta = {
@@ -35,6 +36,11 @@ export const pageMetadata: PageMetadataMap = {
     title: "Account Deletion",
     description: `Request deletion of your ${siteConfig.name} account and associated data.`,
     path: "/delete-account",
+  },
+  refundPolicy: {
+    title: "Refund Policy",
+    description: `Learn how refunds work for ${siteConfig.name} and how to contact us for a refund request.`,
+    path: "/refund-policy",
   },
   support: {
     title: "Support",
